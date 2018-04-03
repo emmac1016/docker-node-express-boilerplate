@@ -1,5 +1,6 @@
 // npm packages
-const bodyParser = require('body-parser');
+import bodyParser from 'body-parser';
+//const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const express = require('express');
 const mongoose = require('mongoose');
@@ -53,6 +54,10 @@ app.use((request, response, next) => {
 });
 
 app.use('/things', thingsRouter);
+
+app.get('/hello', (req, res) => {
+  res.send('hello world');  
+});
 
 app.get('*', fourOhFourHandler); // catch-all for 404 "Not Found" errors
 app.all('*', fourOhFiveHandler); // catch-all for 405 "Method Not Allowed" errors

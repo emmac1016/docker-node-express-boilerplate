@@ -1,22 +1,19 @@
 FROM node:9.1.0
 
-LABEL MAINTAINER Michael Hueter <mthueter@gmail.com>
-
-RUN npm install pm2@2.7.2 --global --quiet
-
-# add local user for security
-RUN groupadd -r nodejs \
-   && useradd -m -r -g nodejs nodejs
-
-USER nodejs
+MAINTAINER Michael Hueter <mthueter@gmail.com>
 
 # copy local files into container, set working directory and user
 RUN mkdir -p /home/nodejs/app
 WORKDIR /home/nodejs/app
 COPY . /home/nodejs/app
 
-RUN npm install --production --quiet
+RUN npm install --global nodemon
+
+RUN /usr/local/bin/yarn install
 
 EXPOSE 5000
 
-CMD ["pm2-docker", "./config/process.yml"]
+# ENTRYPOINT [ "yarn" ]
+# CMD ["start"]
+# https://github.com/b00giZm/docker-compose-nodejs-examples/blob/master/04-express-grunt-watch/app/Gruntfile.js
+CMD ["nodemon", "-L", "/usr/src/bin/www"]

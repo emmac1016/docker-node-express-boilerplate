@@ -9,6 +9,7 @@
   },
   "main": "server/server.js",
   "scripts": {
+    "start": "nodemon babel-node ./server/server.js --presets es2017",
     "test": "mocha tests/unit.js"
   },
   "license": "MIT",
@@ -23,8 +24,11 @@
     "mongoose": "4.13.5"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.2",
+    "babel-preset-2017": "^0.0.0",
     "babel-preset-es2017": "^6.24.1",
-    "eslint": "^4.11.0"
+    "eslint": "^4.11.0",
+    "nodemon": "^1.17.3"
   }
 }
